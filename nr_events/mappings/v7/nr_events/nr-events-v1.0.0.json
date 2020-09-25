@@ -1,0 +1,23 @@
+{
+    "mappings": {
+        "date_detection": false,
+        "numeric_detection": false,
+        "dynamic": false,
+        "oarepo:extends": [
+            "nusl-common-v1.0.0.json"
+        ],
+        "properties": {
+            "defended": {
+                "type": "boolean"
+            },
+            "studyField": {
+                "type": "studyField"
+            },
+            "degreeGrantor": {
+                "type": "Institution"
+            }
+        }
+    }
+}
+
+
