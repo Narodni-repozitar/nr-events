@@ -9,7 +9,8 @@ import uuid
 from pathlib import Path
 
 import pytest
-from flask import Flask, make_response, url_for
+from elasticsearch import Elasticsearch
+from flask import Flask, make_response
 from flask_login import LoginManager, login_user
 from flask_principal import RoleNeed, Principal, Permission
 from flask_taxonomies.proxies import current_flask_taxonomies
@@ -22,27 +23,24 @@ from invenio_celery import InvenioCelery
 from invenio_db import InvenioDB
 from invenio_db import db as db_
 from invenio_indexer import InvenioIndexer
-from invenio_indexer.api import RecordIndexer
 from invenio_jsonschemas import InvenioJSONSchemas
 from invenio_pidstore import InvenioPIDStore
 from invenio_pidstore.providers.recordid import RecordIdProvider
-from invenio_records import InvenioRecords, Record
+from invenio_records import InvenioRecords
 from invenio_records_rest import InvenioRecordsREST
 from invenio_records_rest.schemas.fields import SanitizedUnicode
 from invenio_records_rest.utils import PIDConverter
 from invenio_records_rest.views import create_blueprint_from_app
-from invenio_search import InvenioSearch, RecordsSearch
+from invenio_search import InvenioSearch
 from marshmallow import Schema
 from oarepo_mapping_includes.ext import OARepoMappingIncludesExt
 from oarepo_records_draft.ext import RecordsDraft
 from oarepo_references import OARepoReferences
-from oarepo_references.mixins import ReferenceEnabledRecordMixin
 from oarepo_taxonomies.cli import init_db
 from oarepo_taxonomies.ext import OarepoTaxonomies
-from oarepo_validate import MarshmallowValidatedRecordMixin
 from sqlalchemy_utils import database_exists, create_database, drop_database
 
-# from invenio_nusl_theses import InvenioNUSLTheses
+from nr_events import NREvents
 from tests.helpers import set_identity
 
 
@@ -50,51 +48,6 @@ class TestSchema(Schema):
     """Test record schema."""
     title = SanitizedUnicode()
     control_number = SanitizedUnicode()
-
-
-class TestRecord(MarshmallowValidatedRecordMixin,
-                 ReferenceEnabledRecordMixin,
-                 Record):
-    """Reference enabled test record class."""
-    MARSHMALLOW_SCHEMA = TestSchema
-    VALIDATE_MARSHMALLOW = True
-    VALIDATE_PATCH = True
-
-    @property
-    def canonical_url(self):
-        # SERVER_NAME = current_app.config["SERVER_NAME"]
-        # return f"http://{SERVER_NAME}/api/records/{self['pid']}"
-        return url_for('invenio_records_rest.recid_item',
-                       pid_value=self['pid'], _external=True)
-
-
-RECORDS_REST_ENDPOINTS = {
-    'recid': dict(
-        pid_type='nusl',
-        pid_minter='nsul',
-        pid_fetcher='nusl',
-        default_endpoint_prefix=True,
-        search_class=RecordsSearch,
-        indexer_class=RecordIndexer,
-        search_index='records',
-        search_type=None,
-        record_serializers={
-            'application/json': 'oarepo_validate:json_response',
-        },
-        search_serializers={
-            'application/json': 'oarepo_validate:json_search',
-        },
-        record_loaders={
-            'application/json': 'oarepo_validate:json_loader',
-        },
-        record_class=TestRecord,
-        list_route='/records/',
-        item_route='/records/<pid(nusl):pid_value>',
-        default_media_type='application/json',
-        max_result_window=10000,
-        error_handlers=dict()
-    )
-}
 
 
 @pytest.yield_fixture(scope="class")
@@ -118,7 +71,6 @@ def app():
         CELERY_CACHE_BACKEND='memory',
         CELERY_TASK_EAGER_PROPAGATES=True,
         SUPPORTED_LANGUAGES=["cs", "en"],
-        RECORDS_REST_ENDPOINTS=RECORDS_REST_ENDPOINTS
     )
 
     app.secret_key = 'changeme'
@@ -137,7 +89,7 @@ def app():
     InvenioRecords(app)
     InvenioRecordsREST(app)
     InvenioCelery(app)
-    # InvenioNUSLTheses(app)
+    NREvents(app)
     InvenioPIDStore(app)
     # Invenio Records Draft initialization
     RecordsDraft(app)
@@ -206,6 +158,20 @@ def db(app):
     db_.session.close()
     db_.drop_all()
 
+
+@pytest.fixture()
+def es():
+    return Elasticsearch()
+
+
+@pytest.yield_fixture
+def es_index(es):
+    index_name = "test_index"
+    if not es.indices.exists(index=index_name):
+        yield es.indices.create(index_name)
+
+    if es.indices.exists(index=index_name):
+        es.indices.delete(index_name)
 
 @pytest.fixture
 def client(app, db):

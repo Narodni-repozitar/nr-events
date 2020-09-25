@@ -27,18 +27,18 @@ pytest-runner = "^5.2"
 tests = ["oarepo", "pytest", "pytest-cov"]
 
 [tool.poetry.plugins]
-#[tool.poetry.plugins."invenio_base.apps"]
-#'theses' = 'invenio_nusl_theses:InvenioNUSLTheses'
+[tool.poetry.plugins."invenio_base.apps"]
+'events' = 'nr_events:NREvents'
 
-#[tool.poetry.plugins."invenio_base.api_apps"]
-#'theses' = 'invenio_nusl_theses:InvenioNUSLTheses'
+[tool.poetry.plugins."invenio_base.api_apps"]
+'events' = 'nr_events:NREvents'
 
 [tool.poetry.plugins.'invenio_jsonschemas.schemas']
 'nr_events' = 'nr_events.jsonschemas'
 
-#[tool.poetry.plugins.'invenio_search.mappings']
-#'nr_events' = 'invenio_nusl_theses.mappings'
-#
-#[tool.poetry.plugins.'invenio_oarepo_mapping_includes']
-#'invenio_nusl_theses' = 'invenio_nusl_theses.included_mappings'
+[tool.poetry.plugins.'invenio_search.mappings']
+'nr_events' = 'nr_events.mappings'
+
+[tool.poetry.plugins.'oarepo_mapping_includes']
+'nr_events' = 'nr_events.mapping_includes'
 

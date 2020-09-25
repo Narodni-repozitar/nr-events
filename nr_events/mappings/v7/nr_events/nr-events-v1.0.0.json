@@ -1,23 +1,50 @@
 {
-    "mappings": {
-        "date_detection": false,
-        "numeric_detection": false,
-        "dynamic": false,
-        "oarepo:extends": [
-            "nusl-common-v1.0.0.json"
-        ],
+  "mappings": {
+    "date_detection": false,
+    "numeric_detection": false,
+    "dynamic": false,
+    "properties": {
+      "oarepo:extends": "nusl-common-v1.0.0.json#/mappings/properties",
+      "events": {
+        "type": "object",
         "properties": {
-            "defended": {
-                "type": "boolean"
-            },
-            "studyField": {
-                "type": "studyField"
-            },
-            "degreeGrantor": {
-                "type": "Institution"
+          "nameOriginal": {
+            "type": "multilingual"
+          },
+          "nameAlternate": {
+            "type": "multilingual"
+          },
+          "nameUnified": {
+            "type": "nameUnified"
+          },
+          "date": {
+            "type": "text"
+          },
+          "location": {
+            "type": "nested",
+            "properties": {
+              "place": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword"
+                  }
+                }
+              },
+              "country": {
+                "type": "taxonomy-term",
+                "properties": {
+                  "title": {
+                    "type": "multilingual"
+                  }
+                }
+              }
             }
+          }
         }
+      }
     }
+  }
 }
 
 
