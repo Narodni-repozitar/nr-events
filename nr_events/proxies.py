@@ -25,9 +25,11 @@
 
 """Proxy objects for easier access to application objects."""
 
-from flask import current_app
-from werkzeug.local import LocalProxy
+# from flask import current_app
+# from werkzeug.local import LocalProxy
+#
+# nusl_theses = LocalProxy(
+#     lambda: current_app.extensions[
+#         'invenio-nusl-theses'])  # type: invenio_nusl_theses.api.ThesisAPI
 
-nusl_theses = LocalProxy(
-    lambda: current_app.extensions[
-        'invenio-nusl-theses'])  # type: invenio_nusl_theses.api.ThesisAPI
+# TODO: dodělat společně s API, až budou požadavky na API

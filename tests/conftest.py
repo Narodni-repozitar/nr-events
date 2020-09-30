@@ -71,6 +71,14 @@ def app():
         CELERY_CACHE_BACKEND='memory',
         CELERY_TASK_EAGER_PROPAGATES=True,
         SUPPORTED_LANGUAGES=["cs", "en"],
+        ELASTICSEARCH_DEFAULT_LANGUAGE_TEMPLATE={
+            "type": "text",
+            "fields": {
+                "keywords": {
+                    "type": "keyword"
+                }
+            }
+        }
     )
 
     app.secret_key = 'changeme'
@@ -172,6 +180,7 @@ def es_index(es):
 
     if es.indices.exists(index=index_name):
         es.indices.delete(index_name)
+
 
 @pytest.fixture
 def client(app, db):

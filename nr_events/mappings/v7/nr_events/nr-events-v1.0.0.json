@@ -15,7 +15,7 @@
             "type": "multilingual"
           },
           "nameUnified": {
-            "type": "nameUnified"
+            "type": "nusl-taxonomies-nameunified-v1.0.0.json#/nameUnified"
           },
           "date": {
             "type": "text"
