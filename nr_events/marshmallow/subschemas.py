@@ -11,4 +11,4 @@ class Events(StrictKeysMixin):
     nameAlternate = List(MultilingualStringV2())
     nameUnified = TaxonomyField(mixins=[TitledMixin])
     date = DateRange(required=True)
-    location = Nested(PublicationPlaceSchema(), required=True)
+    location = Nested(PublicationPlaceSchema())
