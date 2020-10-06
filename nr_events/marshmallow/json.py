@@ -7,7 +7,7 @@
 
 """JSON Schemas."""
 
-from invenio_nusl_common.marshmallow.json import CommonMetadataSchemaV2
+from nr_common.marshmallow.json import CommonMetadataSchemaV2
 from marshmallow.fields import List, Nested
 
 from nr_events.marshmallow.subschemas import Events

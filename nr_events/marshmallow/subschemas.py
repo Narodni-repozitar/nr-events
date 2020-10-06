@@ -1,5 +1,5 @@
-from invenio_nusl_common.marshmallow.fields import DateRange
-from invenio_nusl_common.marshmallow.subschemas import TitledMixin, PublicationPlaceSchema
+from nr_common.marshmallow.fields import DateRange
+from nr_common.marshmallow.subschemas import TitledMixin, PublicationPlaceSchema
 from invenio_records_rest.schemas import StrictKeysMixin
 from marshmallow.fields import List, Nested
 from oarepo_multilingual.marshmallow import MultilingualStringV2

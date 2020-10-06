@@ -1,7 +1,7 @@
 {
   "allOf": [
     {
-      "$ref": "../nusl-common-v1.0.0.json"
+      "$ref": "../nr-common-v1.0.0.json"
     },
     {
       "id": "https://nusl.cz/schemas/nr_events/nr-events-v1.0.0.json",
@@ -36,7 +36,7 @@
                 "type": "string"
               },
               "location": {
-                "$ref": "../nusl-common-v1.0.0.json/#/definitions/address"
+                "$ref": "../nr-common-v1.0.0.json/#/definitions/address"
               }
             }
           }
