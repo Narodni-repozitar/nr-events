@@ -50,7 +50,7 @@ class TestSchema(Schema):
     control_number = SanitizedUnicode()
 
 
-@pytest.yield_fixture(scope="class")
+@pytest.yield_fixture(scope="module")
 def app():
     instance_path = tempfile.mkdtemp()
     app = Flask('testapp', instance_path=instance_path)
@@ -139,7 +139,7 @@ def app():
     shutil.rmtree(instance_path)
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture(scope="module")
 def db(app):
     """Create database for the tests."""
     dir_path = os.path.dirname(__file__)
@@ -216,7 +216,7 @@ def tax_url(app):
     return url
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture(scope="module")
 def taxonomy(app, db):
     taxonomy = current_flask_taxonomies.create_taxonomy("test_taxonomy", extra_data={
         "title":
@@ -229,7 +229,7 @@ def taxonomy(app, db):
     return taxonomy
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture(scope="module")
 def taxonomy_tree(app, db, taxonomy):
     # accessRights
     id1 = TermIdentification(taxonomy=taxonomy, slug="c_abf2")
@@ -503,6 +503,23 @@ def base_json_dereferenced():
             'type': 'veřejná VŠ',
             'url': 'https://www.amu.cz'
         }],
+        'entities': [{
+            'address': 'Malostranské náměstí 259/12, 118 00 Praha 1',
+            'aliases': ['AMU'],
+            'ico': '61384984',
+            'is_ancestor': False,
+            'links': {
+                'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/61384984'
+            },
+            'provider': True,
+            'related': {'rid': '51000'},
+            'title': {
+                'cs': 'Akademie múzických umění v Praze',
+                'en': 'Academy of Performing Arts in Prague'
+            },
+            'type': 'veřejná VŠ',
+            'url': 'https://www.amu.cz'
+        }],
         'resourceType': [{
             'is_ancestor': False,
             'links': {
@@ -578,5 +595,5 @@ def base_event_dereferenced():
                 'cs': 'Česká konference',
                 'en': 'Czech conference'
             }
-        }]
+        }],
     }
