@@ -15,9 +15,9 @@ RECORDS_DRAFT_ENDPOINTS = {
     'events': {
         'draft': 'draft-events',
 
-        'pid_type': 'nusl',
-        'pid_minter': 'nusl',
-        'pid_fetcher': 'nusl',
+        'pid_type': 'nrevt',
+        'pid_minter': 'nr_events',
+        'pid_fetcher': 'nr_events',
         'default_endpoint_prefix': True,
         'max_result_window': 500000,
         'search_index': 'events',  # TODO: nestáhl se sám, podívat se na to
@@ -32,7 +32,7 @@ RECORDS_DRAFT_ENDPOINTS = {
 
     },
     'draft-events': {
-        'pid_type': 'dnusl',
+        'pid_type': 'dnrevt',
     }
 }
 
