@@ -21,7 +21,6 @@ before_install:
     - travis_retry pip install --upgrade pip setuptools py
     - "travis_retry pip install twine wheel coveralls"
     - pip install poetry
-    - cat poetry.lock
     - curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.6.2-amd64.deb -o elasticsearch.deb
     - sudo dpkg -i --force-confnew elasticsearch.deb
     - sudo chown -R elasticsearch:elasticsearch /etc/default/elasticsearch
@@ -29,6 +28,7 @@ before_install:
 
 install:
     - "travis_retry poetry install --extras tests"
+    - cat poetry.lock
 
 before_script:
   - sleep 10
