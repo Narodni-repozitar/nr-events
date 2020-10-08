@@ -36,7 +36,7 @@
                 "type": "string"
               },
               "location": {
-                "$ref": "../nr-common-v1.0.0.json/#/definitions/address"
+                "$ref": "../nr-common-v1.0.0.json#/definitions/location"
               }
             }
           }
