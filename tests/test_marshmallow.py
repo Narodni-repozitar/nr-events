@@ -7,10 +7,7 @@ from nr_events.marshmallow import EventsMetadataSchemaV1
 class TestNameOriginal:
     def test_name_original_1(self, app, db, taxonomy_tree, base_json, base_json_dereferenced,
                              base_event, base_event_dereferenced):
-        content = {
-            "cs": "Česká konference 2020",
-            "en": "Czech conference 2020"
-        }
+        content = "Česká konference 2020"
         field = "nameOriginal"
         base_json["events"] = [base_event]
         base_json_dereferenced["events"] = [base_event_dereferenced]
@@ -22,9 +19,10 @@ class TestNameOriginal:
 
     def test_name_original_2(self, app, db, taxonomy_tree, base_json, base_json_dereferenced,
                              base_event, base_event_dereferenced):
+        # Bad datatype
         content = {
             "cs": "Česká konference 2020",
-            "de": "Czech conference 2020"
+            "en": "Czech conference 2020"
         }
         field = "nameOriginal"
         base_json["events"] = [base_event]
@@ -39,10 +37,7 @@ class TestNameOriginal:
 class TestNameAlternate:
     def test_name_alternate_1(self, app, db, taxonomy_tree, base_json, base_json_dereferenced,
                               base_event, base_event_dereferenced):
-        content = [{
-            "cs": "Česká konference 2020",
-            "en": "Czech conference 2020"
-        }]
+        content = ["Česká konference 2020", "Czech conference 2020"]
         field = "nameAlternate"
         base_json["events"] = [base_event]
         base_json_dereferenced["events"] = [base_event_dereferenced]
@@ -54,6 +49,7 @@ class TestNameAlternate:
 
     def test_name_alternate_2(self, app, db, taxonomy_tree, base_json, base_json_dereferenced,
                               base_event, base_event_dereferenced):
+        # wrong data type
         content = {
             "cs": "Česká konference 2020",
             "en": "Czech conference 2020"
@@ -160,20 +156,30 @@ class TestLocation:
         base_json["events"] = [base_event]
         base_json_dereferenced["events"] = [base_event_dereferenced]
         base_json["events"][0][field] = content
-        base_json_dereferenced["events"][0][field] = {'country': [{'code': {'alpha2': 'CZ',
-                                                'alpha3': 'CZE',
-                                                'number': '203'},
-                                       'is_ancestor': False,
-                                       'links': {'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/cz'},
-                                       'title': {'cs': 'Česko',
-                                                 'en': 'Czechia'}}],
-                          'place': 'Praha'}
+        base_json_dereferenced["events"][0][field] = {
+            'country': [{
+                            'code': {
+                                'alpha2': 'CZ',
+                                'alpha3': 'CZE',
+                                'number': '203'
+                            },
+                            'is_ancestor': False,
+                            'links': {
+                                'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/cz'
+                            },
+                            'title': {
+                                'cs': 'Česko',
+                                'en': 'Czechia'
+                            }
+                        }],
+            'place': 'Praha'
+        }
         schema = EventsMetadataSchemaV1()
         result = schema.load(base_json)
         assert result == base_json_dereferenced
 
     def test_location_2(self, app, db, taxonomy_tree, base_json, base_json_dereferenced,
-                      base_event, base_event_dereferenced):
+                        base_event, base_event_dereferenced):
         content = {
             "place": "Praha",
             "country": [

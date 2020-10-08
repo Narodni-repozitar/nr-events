@@ -9,10 +9,20 @@
         "type": "object",
         "properties": {
           "nameOriginal": {
-            "type": "multilingual"
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
           },
           "nameAlternate": {
-            "type": "multilingual"
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
           },
           "nameUnified": {
             "type": "nr-taxonomies-nameunified-v1.0.0.json#/nameUnified"

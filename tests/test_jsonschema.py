@@ -8,6 +8,5 @@ def test_json(app, base_json, base_event):
     print("START")
     print(app)
     print(current_jsonschemas.list_schemas())
-    base_json.update(base_event)
-    pprint(base_json)
+    base_json["events"] = [base_event]
     _records_state.validate(base_json, "https://nusl.cz/schemas/nr_events/nr-events-v1.0.0.json")

@@ -537,14 +537,8 @@ def base_json_dereferenced():
 @pytest.fixture()
 def base_event():
     return {
-        "nameOriginal": {
-            "cs": "Česká konference 2020",
-            "en": "Czech conference 2020"
-        },
-        "nameAlternate": [{
-            "cs": "Konference Česka 2020",
-            "en": "Conference of Czechia 2020"
-        }],
+        "nameOriginal": "Česká konference 2020",
+        "nameAlternate": ["Konference Česka 2020", "Conference of Czechia 2020"],
         "nameUnified": [{
             "links": {
                 "self": "http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/cze-conference"
@@ -581,11 +575,8 @@ def base_event_dereferenced():
             }],
             'place': 'Prague'
         },
-        'nameAlternate': [{
-            'cs': 'Konference Česka 2020',
-            'en': 'Conference of Czechia 2020'
-        }],
-        'nameOriginal': {'cs': 'Česká konference 2020', 'en': 'Czech conference 2020'},
+        'nameAlternate': ['Konference Česka 2020', 'Conference of Czechia 2020'],
+        'nameOriginal': 'Česká konference 2020',
         'nameUnified': [{
             'is_ancestor': False,
             'links': {
