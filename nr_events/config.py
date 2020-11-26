@@ -20,10 +20,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'pid_fetcher': 'nr_events',
         'default_endpoint_prefix': True,
         'max_result_window': 500000,
-        'search_index': 'events',  # TODO: nestáhl se sám, podívat se na to
-
         'record_class': 'nr_events.record:PublishedEventRecord',
-
         'publish_permission_factory_imp': allow_all,  # TODO: change this !!!
         'unpublish_permission_factory_imp': allow_all,
         'edit_permission_factory_imp': allow_all,
