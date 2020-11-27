@@ -26,28 +26,51 @@ from invenio_indexer import InvenioIndexer
 from invenio_jsonschemas import InvenioJSONSchemas
 from invenio_pidstore import InvenioPIDStore
 from invenio_pidstore.providers.recordid import RecordIdProvider
-from invenio_records import InvenioRecords
+from invenio_records import InvenioRecords, Record
 from invenio_records_rest import InvenioRecordsREST
 from invenio_records_rest.schemas.fields import SanitizedUnicode
 from invenio_records_rest.utils import PIDConverter
 from invenio_records_rest.views import create_blueprint_from_app
 from invenio_search import InvenioSearch
 from marshmallow import Schema
+from marshmallow.fields import Url, Boolean, Nested, List
 from oarepo_mapping_includes.ext import OARepoMappingIncludesExt
 from oarepo_records_draft.ext import RecordsDraft
 from oarepo_references import OARepoReferences
+from oarepo_references.mixins import ReferenceEnabledRecordMixin
 from oarepo_taxonomies.cli import init_db
 from oarepo_taxonomies.ext import OarepoTaxonomies
+from oarepo_validate import MarshmallowValidatedRecordMixin
+from oarepo_validate.ext import OARepoValidate
 from sqlalchemy_utils import database_exists, create_database, drop_database
 
 from nr_events import NREvents
 from tests.helpers import set_identity
 
 
+class Links(Schema):
+    self = Url()
+
+
+class ResourceType(Schema):
+    is_ancestor = Boolean()
+    links = Nested(Links)
+
+
 class TestSchema(Schema):
     """Test record schema."""
     title = SanitizedUnicode()
     control_number = SanitizedUnicode()
+    resourceType = List(Nested(ResourceType))
+
+
+class TestRecord(MarshmallowValidatedRecordMixin,
+                 ReferenceEnabledRecordMixin,
+                 Record):
+    """Reference enabled test record class."""
+    MARSHMALLOW_SCHEMA = TestSchema
+    VALIDATE_MARSHMALLOW = True
+    VALIDATE_PATCH = True
 
 
 @pytest.yield_fixture(scope="module")
@@ -100,6 +123,7 @@ def app():
     NREvents(app)
     InvenioPIDStore(app)
     # Invenio Records Draft initialization
+    OARepoValidate(app)
     RecordsDraft(app)
     app.url_map.converters['pid'] = PIDConverter
 

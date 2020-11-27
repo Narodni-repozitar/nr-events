@@ -12,7 +12,8 @@ python:
 before_install:
 - travis_retry pip install --upgrade pip setuptools py
 - travis_retry pip install twine wheel coveralls
-- pip install poetry
+- travis_retry pip install poetry==1.0.10
+- "travis_retry poetry config virtualenvs.create false"
 - curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.6.2-amd64.deb
   -o elasticsearch.deb
 - sudo dpkg -i --force-confnew elasticsearch.deb
