@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "nr-events"
-version = "1.0.0a7"
+version = "1.0.0a8"
 description = "National repository events metadata model"
 license = "MIT"
 keywords = ["National repository", "events"]
