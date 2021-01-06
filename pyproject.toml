@@ -15,8 +15,8 @@ oarepo = { version = "^3.3", optional = true }
 oarepo-invenio-model = "^2.0.1"
 oarepo-multilingual = "^2.2.0"
 oarepo-records-draft = "^5.0.0a7"
-oarepo-references = "^1.8.1"
-oarepo-taxonomies = "^2.4.1"
+oarepo-references = "^1.9.0"
+oarepo-taxonomies = "^2.5.3"
 oarepo-validate = "^1.2.8"
 pytest = { version = "^5.0.0", optional = true }
 pytest-cov = { version = "^2.10.1", optional = true }
