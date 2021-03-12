@@ -31,7 +31,14 @@
             "type": "nr-taxonomies-nameunified-v1.0.0.json#/nameUnified"
           },
           "date": {
-            "type": "text"
+            "type": "keyword",
+            "fields": {
+              "date": {
+                "type": "date",
+                "format": "YYYY",
+                "ignore_malformed": true
+              }
+            }
           },
           "location": {
             "type": "nested",
