@@ -11,6 +11,8 @@ from __future__ import absolute_import, print_function
 
 from invenio_records_rest.utils import allow_all
 
+from nr_events.record import draft_index_name
+
 RECORDS_DRAFT_ENDPOINTS = {
     'events': {
         'draft': 'draft-events',
@@ -21,6 +23,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'default_endpoint_prefix': True,
         'max_result_window': 500000,
         'record_class': 'nr_events.record:PublishedEventRecord',
+        'list_route': '/events/',
         'publish_permission_factory_imp': allow_all,  # TODO: change this !!!
         'unpublish_permission_factory_imp': allow_all,
         'edit_permission_factory_imp': allow_all,
@@ -30,6 +33,9 @@ RECORDS_DRAFT_ENDPOINTS = {
     },
     'draft-events': {
         'pid_type': 'dnrevt',
+        'record_class': 'nr_events.record:DraftEventRecord',
+        'list_route': '/draft/events/',
+        'search_index': draft_index_name
     }
 }
 
