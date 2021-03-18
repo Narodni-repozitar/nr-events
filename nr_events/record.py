@@ -41,3 +41,8 @@ class PublishedEventRecord(InvalidRecordAllowedMixin, EventBaseRecord):
 
 class DraftEventRecord(DraftRecordMixin, EventBaseRecord):
     index_name = draft_index_name
+
+    @property
+    def canonical_url(self):
+        return url_for('invenio_records_rest.draft-events_item',
+                       pid_value=self['control_number'], _external=True)
