@@ -81,6 +81,7 @@ class TestNameUnified:
         base_json_dereferenced["events"][0][field] = [
             {
                 'is_ancestor': False,
+                'level': 1,
                 'links': {
                     'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/cze-conference'
                 },
@@ -158,20 +159,21 @@ class TestLocation:
         base_json["events"][0][field] = content
         base_json_dereferenced["events"][0][field] = {
             'country': [{
-                            'code': {
-                                'alpha2': 'CZ',
-                                'alpha3': 'CZE',
-                                'number': '203'
-                            },
-                            'is_ancestor': False,
-                            'links': {
-                                'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/cz'
-                            },
-                            'title': {
-                                'cs': 'Česko',
-                                'en': 'Czechia'
-                            }
-                        }],
+                'code': {
+                    'alpha2': 'CZ',
+                    'alpha3': 'CZE',
+                    'number': '203'
+                },
+                'is_ancestor': False,
+                'level': 1,
+                'links': {
+                    'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/cz'
+                },
+                'title': {
+                    'cs': 'Česko',
+                    'en': 'Czechia'
+                }
+            }],
             'place': 'Praha'
         }
         schema = EventsMetadataSchemaV1()
