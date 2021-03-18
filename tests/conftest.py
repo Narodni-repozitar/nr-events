@@ -486,6 +486,7 @@ def base_json_dereferenced():
     return {
         'accessRights': [{
             'is_ancestor': False,
+            'level': 1,
             'links': {
                 'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/c-abf2'
             },
@@ -505,6 +506,7 @@ def base_json_dereferenced():
                      {'cs': '3', 'en': '3'}],
         'language': [{
             'is_ancestor': False,
+            'level': 1,
             'links': {
                 'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/cze'
             },
@@ -515,6 +517,7 @@ def base_json_dereferenced():
             'aliases': ['AMU'],
             'ico': '61384984',
             'is_ancestor': False,
+            'level': 1,
             'links': {
                 'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/61384984'
             },
@@ -532,6 +535,7 @@ def base_json_dereferenced():
             'aliases': ['AMU'],
             'ico': '61384984',
             'is_ancestor': False,
+            'level': 1,
             'links': {
                 'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/61384984'
             },
@@ -546,6 +550,7 @@ def base_json_dereferenced():
         }],
         'resourceType': [{
             'is_ancestor': False,
+            'level': 1,
             'links': {
                 'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/bakalarske-prace'
             },
@@ -592,6 +597,7 @@ def base_event_dereferenced():
                     'number': '203'
                 },
                 'is_ancestor': False,
+                'level': 1,
                 'links': {
                     'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/cz'
                 },
@@ -603,6 +609,7 @@ def base_event_dereferenced():
         'nameOriginal': 'Česká konference 2020',
         'nameUnified': [{
             'is_ancestor': False,
+            'level': 1,
             'links': {
                 'self': 'http://127.0.0.1:5000/2.0/taxonomies/test_taxonomy/cze-conference'
             },
