@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "nr-events"
-version = "1.0.0a11"
+version = "1.0.0a12"
 description = "National repository events metadata model"
 license = "MIT"
 keywords = ["National repository", "events"]
@@ -16,7 +16,7 @@ nr-common = { git = "https://github.com/Narodni-repozitar/nr-common.git", branch
 [tool.poetry.dev-dependencies]
 oarepo-records-draft = "^5.0.0a7"
 oarepo-references = "^1.9.0"
-oarepo-taxonomies = "^2.5.3"
+oarepo-taxonomies = "^3.0.0a1"
 oarepo-validate = "^1.2.8"
 oarepo-invenio-model = "^2.0.1"
 oarepo-multilingual = "^2.2.0"
