@@ -1,6 +1,6 @@
 [tool]
 [tool.poetry]
-name = "nr-events"
+name = "techlib-nr-events"
 version = "1.0.0a13"
 description = "National repository events metadata model"
 license = "MIT"
@@ -8,6 +8,7 @@ keywords = ["National repository", "events"]
 classifiers = ["Environment :: Web Environment", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent", "Programming Language :: Python", "Topic :: Internet :: WWW/HTTP :: Dynamic Content", "Topic :: Software Development :: Libraries :: Python Modules", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.7", "Development Status :: 3 - Alpha"]
 authors = ["Daniel Kopecký <Daniel.Kopecky@techlib.cz>"]
 readme = "README.md"
+packages = [{include='nr_events'}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
