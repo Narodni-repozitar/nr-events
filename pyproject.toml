@@ -12,7 +12,7 @@ packages = [{include='nr_events'}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-nr-common = "^3.0.0a38"
+techlib-nr-common = "^3.0.0a38"
 
 [tool.poetry.dev-dependencies]
 oarepo-mapping-includes = "<=1.2.0"
