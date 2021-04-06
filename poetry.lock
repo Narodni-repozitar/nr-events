@@ -1095,7 +1095,7 @@ all = ["Sphinx (>=3)", "cachelib (>=0.1)", "pytest-invenio (>=1.4.1)", "redis (>
 docs = ["Sphinx (>=3)"]
 mysql = ["invenio-db[mysql,versioning] (>=1.0.8)"]
 postgresql = ["invenio-db[postgresql,versioning] (>=1.0.8)"]
-sqlite = ["invenio-db[sqlite,versioning] (>=1.0.8)"]
+sqlite = ["invenio-db[versioning,sqlite] (>=1.0.8)"]
 tests = ["cachelib (>=0.1)", "pytest-invenio (>=1.4.1)", "redis (>=2.10.5)"]
 
 [[package]]
@@ -1710,9 +1710,9 @@ invenio-pidstore = ">=1.2.0"
 invenio-records = ">=1.0.0"
 
 [package.extras]
-all = ["Sphinx (>=1.5.1)", "check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[mysql,postgresql,versioning] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
+all = ["Sphinx (>=1.5.1)", "check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[postgresql,mysql,versioning] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
 docs = ["Sphinx (>=1.5.1)"]
-tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[mysql,postgresql,versioning] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
+tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[postgresql,mysql,versioning] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
 
 [[package]]
 name = "invenio-rest"
@@ -3196,7 +3196,7 @@ widechars = ["wcwidth"]
 
 [[package]]
 name = "techlib-nr-common"
-version = "3.0.0a38"
+version = "3.0.0a39"
 description = "NR common data types"
 category = "main"
 optional = false
@@ -3472,7 +3472,7 @@ tests = []
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "7308f625319a3a8da5b9df9c803f50c3ce01377bb0c755a36bc867cd83b2b169"
+content-hash = "b53545db37e365f9f13e6466676e2af6f450cb1b998895b6c4579db49b2f26f9"
 
 [metadata.files]
 alembic = [
@@ -4684,8 +4684,8 @@ tabulate = [
     {file = "tabulate-0.8.9.tar.gz", hash = "sha256:eb1d13f25760052e8931f2ef80aaf6045a6cceb47514db8beab24cded16f13a7"},
 ]
 techlib-nr-common = [
-    {file = "techlib-nr-common-3.0.0a38.tar.gz", hash = "sha256:7e2043dcf2d4862705814d19dfb2fb27157cb18bcf7dc23fd5a305e5662bf121"},
-    {file = "techlib_nr_common-3.0.0a38-py3-none-any.whl", hash = "sha256:3e60bcef47deec2f03ad3c512be41b8a9920e69b4287e393501692c425211b39"},
+    {file = "techlib-nr-common-3.0.0a39.tar.gz", hash = "sha256:8a10a3ae2b1dba66c691d6fdf300cf3cc3119064cd2caeb3f621adbc2f04f83a"},
+    {file = "techlib_nr_common-3.0.0a39-py3-none-any.whl", hash = "sha256:43b3db1c0d974dfae2debf5cff8d2b39932f574aef2d231ade687750b3150797"},
 ]
 testpath = [
     {file = "testpath-0.4.4-py2.py3-none-any.whl", hash = "sha256:bfcf9411ef4bf3db7579063e0546938b1edda3d69f4e1fb8756991f5951f85d4"},
