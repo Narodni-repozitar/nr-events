@@ -27,6 +27,7 @@ pytest-cov ="^2.10.1"
 oarepo = "^3.3"
 pytest-runner = "^5.2"
 oarepo-fsm = "^1.5.0"
+oarepo-communities = "^1.4.0"
 
 [tool.poetry.extras]
 tests = ["oarepo", "pytest", "pytest-cov"]
