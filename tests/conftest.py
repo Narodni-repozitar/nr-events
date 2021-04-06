@@ -101,7 +101,8 @@ def app():
                     "type": "keyword"
                 }
             }
-        }
+        },
+        OAREPO_COMMUNITIES_ENDPOINTS=[]
     )
 
     app.secret_key = 'changeme'
