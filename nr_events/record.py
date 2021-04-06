@@ -3,6 +3,8 @@ import os
 from flask import url_for
 from invenio_records.api import Record
 from nr_common.record import CommonBaseRecord
+from oarepo_communities.record import CommunityRecordMixin
+from oarepo_fsm.mixins import FSMMixin
 from oarepo_records_draft.record import InvalidRecordAllowedMixin, DraftRecordMixin
 from oarepo_references.mixins import ReferenceEnabledRecordMixin
 from oarepo_validate import SchemaKeepingRecordMixin, MarshmallowValidatedRecordMixin
@@ -23,6 +25,7 @@ prefixed_all_index_name = os.environ.get('INVENIO_SEARCH_INDEX_PREFIX', '') + al
 class EventBaseRecord(SchemaKeepingRecordMixin,
                       MarshmallowValidatedRecordMixin,
                       ReferenceEnabledRecordMixin,
+                      CommunityRecordMixin,
                       Record,
                       ):
     ALLOWED_SCHEMAS = EVENTS_ALLOWED_SCHEMAS
