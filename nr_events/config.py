@@ -12,6 +12,7 @@ from __future__ import absolute_import, print_function
 from invenio_records_rest.utils import allow_all
 
 from nr_events.record import draft_index_name
+from nr_events.search import EventsRecordsSearch
 
 RECORDS_DRAFT_ENDPOINTS = {
     'events': {
@@ -28,7 +29,8 @@ RECORDS_DRAFT_ENDPOINTS = {
         'unpublish_permission_factory_imp': allow_all,
         'edit_permission_factory_imp': allow_all,
         'default_media_type': 'application/json',
-        'links_factory_imp': 'oarepo_fsm.links:record_fsm_links_factory'
+        'links_factory_imp': 'oarepo_fsm.links:record_fsm_links_factory',
+        'search_class': EventsRecordsSearch
         # 'indexer_class': CommitingRecordIndexer,
 
     },
@@ -37,7 +39,8 @@ RECORDS_DRAFT_ENDPOINTS = {
         'record_class': 'nr_events.record:DraftEventRecord',
         'list_route': '/draft/events/',
         'search_index': draft_index_name,
-        'links_factory_imp': 'oarepo_fsm.links:record_fsm_links_factory'
+        'links_factory_imp': 'oarepo_fsm.links:record_fsm_links_factory',
+        'search_class': EventsRecordsSearch
     }
 }
 
