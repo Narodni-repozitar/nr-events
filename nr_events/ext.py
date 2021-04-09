@@ -12,7 +12,6 @@ from __future__ import absolute_import, print_function
 import logging
 
 from . import config
-from .api import EventsAPI
 
 log = logging.getLogger('nr-events')
 
@@ -28,7 +27,6 @@ class NREvents(object):
     def init_app(self, app):
         """Flask application initialization."""
         self.init_config(app)
-        app.extensions['nr-events'] = EventsAPI(app)
 
     def init_config(self, app):
         """Initialize configuration.
@@ -36,6 +34,7 @@ class NREvents(object):
         Override configuration variables with the values in this package.
         """
         app.config.setdefault('RECORDS_DRAFT_ENDPOINTS', {}).update(config.RECORDS_DRAFT_ENDPOINTS)
+        app.config.setdefault('RECORDS_REST_ENDPOINTS', {}).update(config.RECORDS_REST_ENDPOINTS)
         app.config.setdefault('RECORDS_REST_FACETS', {}).update(config.RECORDS_REST_FACETS)
 
         app.config.setdefault('RECORDS_REST_SORT_OPTIONS', {}).update(

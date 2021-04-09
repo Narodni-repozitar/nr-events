@@ -9,7 +9,7 @@ def test_nr_events_id_fetcher(app, db, base_json, taxonomy_tree):
     record = PublishedEventRecord.create(data=data)
     fetched_id = nr_events_id_fetcher(record_uuid=record.id, data=data)
     assert fetched_id.pid_type == "nrevt"
-    assert fetched_id.pid_value == data[id_field]
+    assert str(fetched_id.pid_value) == str(data[id_field])
 
 
 def test_entry_points(app):

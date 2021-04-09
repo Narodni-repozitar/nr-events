@@ -18,7 +18,4 @@ from nr_common.providers import NRIdProvider
 
 
 class NREventsIdProvider(NRIdProvider):
-    """Thesss identifier provider."""
-
     pid_type = 'nrevt'
-    """Type of persistent identifier."""
