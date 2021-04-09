@@ -1,7 +1,7 @@
 from nr_common.search import NRRecordsSearch
 
 
-class GenericRecordsSearch(NRRecordsSearch):
+class EventsRecordsSearch(NRRecordsSearch):
     LIST_SOURCE_FIELDS = [
         'control_number', 'oarepo:validity.valid', 'oarepo:draft', 'title', 'dateIssued',
         'creator', 'resourceType', 'contributor', 'keywords', 'subject', 'abstract', 'state',
