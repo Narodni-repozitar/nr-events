@@ -10,7 +10,4 @@ def test_record(app, db, base_json, taxonomy_tree):
     record_id = uuid.uuid4()
     record = PublishedEventRecord.create(data=base_json, id_=record_id)
     url = record.canonical_url
-    prs_url = urlparse(url)
-    path_array = prs_url.path.split("/")[1:]
-    assert path_array[-1] == pid
-    assert path_array[0] == "events"
+    assert url == 'http://127.0.0.1:5000/nr/events/411100'
