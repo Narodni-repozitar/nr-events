@@ -9,6 +9,8 @@
 
 from __future__ import absolute_import, print_function
 
+from functools import partial
+
 from invenio_records_rest.utils import allow_all, deny_all
 from nr_common.search import community_search_factory
 from oarepo_communities.links import community_record_links_factory
@@ -17,6 +19,8 @@ from nr_events.constants import PUBLISHED_EVENT_PID_TYPE, PUBLISHED_EVENT_RECORD
     DRAFT_EVENT_PID_TYPE, DRAFT_EVENT_RECORD, ALL_EVENTS_RECORD_CLASS, ALL_EVENTS_PID_TYPE, all_events_index_name
 from nr_events.record import draft_index_name
 from nr_events.search import EventsRecordsSearch
+from nr_common.links import nr_links_factory
+
 
 RECORDS_DRAFT_ENDPOINTS = {
     'events-community': {
@@ -42,7 +46,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'update_permission_factory_imp': deny_all,
         'delete_permission_factory_imp': deny_all,
         'default_media_type': 'application/json',
-        'links_factory_imp': community_record_links_factory,
+        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
         'search_class': EventsRecordsSearch,
         # 'indexer_class': CommitingRecordIndexer,
         'files': dict(
@@ -62,7 +66,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'list_route': '/<community_id>/events/draft/',
         'item_route': f'/<commpid(nrthe,model="events/draft",record_class="nr_events.record:DraftEventRecord"):pid_value>',
         'search_index': draft_index_name,
-        'links_factory_imp': community_record_links_factory,
+        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
         'search_factory_imp': community_search_factory,
         'search_class': EventsRecordsSearch,
         'search_serializers': {
@@ -109,7 +113,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'update_permission_factory_imp': deny_all,
         'delete_permission_factory_imp': deny_all,
         'default_media_type': 'application/json',
-        'links_factory_imp': community_record_links_factory,
+        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
         'search_class': EventsRecordsSearch,
         # 'indexer_class': CommitingRecordIndexer,
         'files': dict(
@@ -128,7 +132,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'list_route': '/events/draft/',
         'item_route': f'/not-really-used',
         'search_index': draft_index_name,
-        'links_factory_imp': community_record_links_factory,
+        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
         'search_class': EventsRecordsSearch,
         'search_serializers': {
             'application/json': 'oarepo_validate:json_search',
@@ -164,7 +168,7 @@ RECORDS_REST_ENDPOINTS = {
             'application/json': 'oarepo_validate:json_search',
         },
         list_route='/events/all/',
-        links_factory_imp=community_record_links_factory,
+        links_factory_imp=partial(community_record_links_factory, original_links_factory=nr_links_factory),
         default_media_type='application/json',
         max_result_window=10000,
         # not used really
@@ -193,7 +197,7 @@ RECORDS_REST_ENDPOINTS = {
             'application/json': 'oarepo_validate:json_search',
         },
         list_route='/<community_id>/events/all/',
-        links_factory_imp=community_record_links_factory,
+        links_factory_imp=partial(community_record_links_factory, original_links_factory=nr_links_factory),
         default_media_type='application/json',
         max_result_window=10000,
         # not used really
