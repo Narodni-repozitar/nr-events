@@ -16,7 +16,7 @@ from oarepo_communities.links import community_record_links_factory
 from nr_events.constants import PUBLISHED_EVENT_PID_TYPE, PUBLISHED_EVENT_RECORD, published_index_name, \
     DRAFT_EVENT_PID_TYPE, DRAFT_EVENT_RECORD, ALL_EVENTS_RECORD_CLASS, ALL_EVENTS_PID_TYPE, all_events_index_name
 from nr_events.record import draft_index_name
-from nr_events.search import GenericRecordsSearch
+from nr_events.search import EventsRecordsSearch
 
 RECORDS_DRAFT_ENDPOINTS = {
     'events-community': {
@@ -43,7 +43,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'delete_permission_factory_imp': deny_all,
         'default_media_type': 'application/json',
         'links_factory_imp': community_record_links_factory,
-        'search_class': GenericRecordsSearch,
+        'search_class': EventsRecordsSearch,
         # 'indexer_class': CommitingRecordIndexer,
         'files': dict(
             # Who can upload attachments to a draft dataset record
@@ -64,7 +64,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'search_index': draft_index_name,
         'links_factory_imp': community_record_links_factory,
         'search_factory_imp': community_search_factory,
-        'search_class': GenericRecordsSearch,
+        'search_class': EventsRecordsSearch,
         'search_serializers': {
             'application/json': 'oarepo_validate:json_search',
         },
@@ -110,7 +110,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'delete_permission_factory_imp': deny_all,
         'default_media_type': 'application/json',
         'links_factory_imp': community_record_links_factory,
-        'search_class': GenericRecordsSearch,
+        'search_class': EventsRecordsSearch,
         # 'indexer_class': CommitingRecordIndexer,
         'files': dict(
             # Who can upload attachments to a draft dataset record
@@ -129,7 +129,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'item_route': f'/not-really-used',
         'search_index': draft_index_name,
         'links_factory_imp': community_record_links_factory,
-        'search_class': GenericRecordsSearch,
+        'search_class': EventsRecordsSearch,
         'search_serializers': {
             'application/json': 'oarepo_validate:json_search',
         },
@@ -158,7 +158,7 @@ RECORDS_REST_ENDPOINTS = {
         pid_fetcher='nr_all',
         default_endpoint_prefix=True,
         record_class=ALL_EVENTS_RECORD_CLASS,
-        search_class=GenericRecordsSearch,
+        search_class=EventsRecordsSearch,
         search_index=all_events_index_name,
         search_serializers={
             'application/json': 'oarepo_validate:json_search',
@@ -186,7 +186,7 @@ RECORDS_REST_ENDPOINTS = {
         pid_fetcher='nr_all',
         default_endpoint_prefix=True,
         record_class=ALL_EVENTS_RECORD_CLASS,
-        search_class=GenericRecordsSearch,
+        search_class=EventsRecordsSearch,
         search_index=all_events_index_name,
         search_factory_imp=community_search_factory,
         search_serializers={
