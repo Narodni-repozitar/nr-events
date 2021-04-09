@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "techlib-nr-events"
-version = "1.0.0a17"
+version = "1.0.0a18"
 description = "National repository events metadata model"
 license = "MIT"
 keywords = ["National repository", "events"]
@@ -12,7 +12,7 @@ packages = [{include='nr_events'}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-techlib-nr-common = "^3.0.0a44"
+techlib-nr-common = "^3.0.0a45"
 
 [tool.poetry.dev-dependencies]
 oarepo-mapping-includes = "<=1.2.0"
