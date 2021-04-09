@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "techlib-nr-events"
-version = "1.0.0a13"
+version = "1.0.0a14"
 description = "National repository events metadata model"
 license = "MIT"
 keywords = ["National repository", "events"]
@@ -28,6 +28,7 @@ oarepo = "^3.3"
 pytest-runner = "^5.2"
 oarepo-fsm = "^1.5.0"
 oarepo-communities = "^1.4.0"
+techlib-nr-common = "^3.0.0-alpha.44"
 
 [tool.poetry.extras]
 tests = ["oarepo", "pytest", "pytest-cov"]

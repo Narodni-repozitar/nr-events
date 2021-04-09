@@ -1,6 +1,6 @@
 {
   "aliases": {
-    "nr-all": {}
+    "{PREFIX}nr-all": {}
   },
   "mappings": {
     "date_detection": false,

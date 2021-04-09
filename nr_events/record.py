@@ -2,9 +2,7 @@ import os
 
 from flask import url_for
 from invenio_records.api import Record
-from nr_common.record import CommonBaseRecord
 from oarepo_communities.record import CommunityRecordMixin
-from oarepo_fsm.mixins import FSMMixin
 from oarepo_records_draft.record import InvalidRecordAllowedMixin, DraftRecordMixin
 from oarepo_references.mixins import ReferenceEnabledRecordMixin
 from oarepo_validate import SchemaKeepingRecordMixin, MarshmallowValidatedRecordMixin
