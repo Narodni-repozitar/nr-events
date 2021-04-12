@@ -35,7 +35,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'search_factory_imp': community_search_factory,
 
         'list_route': '/<community_id>/events/',
-        'item_route': f'/<commpid(nrthe,model="events",record_class="nr_events.record:PublishedEventRecord"):pid_value>',
+        'item_route': f'/<commpid({PUBLISHED_EVENT_PID_TYPE},model="events",record_class="{PUBLISHED_EVENT_RECORD}"):pid_value>',
 
         'publish_permission_factory_imp': 'nr_common.permissions.publish_draft_object_permission_impl',
         'unpublish_permission_factory_imp': 'nr_common.permissions.unpublish_draft_object_permission_impl',
@@ -64,7 +64,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'record_class': DRAFT_EVENT_RECORD,
 
         'list_route': '/<community_id>/events/draft/',
-        'item_route': f'/<commpid(nrthe,model="events/draft",record_class="nr_events.record:DraftEventRecord"):pid_value>',
+        'item_route': f'/<commpid({DRAFT_EVENT_PID_TYPE},model="events/draft",record_class="{DRAFT_EVENT_RECORD}"):pid_value>',
         'search_index': draft_index_name,
         'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
         'search_factory_imp': community_search_factory,
